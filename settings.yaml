@@ -1,0 +1,9 @@
+label_1:
+  type: QLabel
+  width: 300
+  height: 100
+  alignment: center
+  fontFamily: times
+  fontPoint: 20
+  fontBold: True
+  text: start
