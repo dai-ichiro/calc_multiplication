@@ -14,10 +14,7 @@ from make_database import Multiplication
 
 engine = create_engine('sqlite:///try_again.db')
 session = sessionmaker(bind = engine)()
-all_data = session.query(Multiplication)
-question_list = []
-for each_data in all_data:
-    question_list.append([each_data.q1, each_data.q2])
+question_list = [(x.q1, x.q2) for x in session.query(Multiplication)]
 session.close()
 
 class Window(QMainWindow):
