@@ -45,9 +45,7 @@ class Window(QMainWindow):
 
     def calc_exe(self):
         if self.playing == False:
-            one_question = random.choice(question_list)
-            self.q1 = one_question[0]
-            self.q2 = one_question[1]
+            self.q1, self.q2 = random.choice(question_list)
             self.num_label.setText('%d x %d'%(self.q1, self.q2))
             self.answer = self.q1 * self.q2
             self.speaker.Speak('%dかける%d'%(self.q1, self.q2))
