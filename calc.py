@@ -29,13 +29,13 @@ class Window(QMainWindow):
 
     def keyPressEvent(self, e):
 
-        if e.key() == Qt.Key.Key_N:
+        if e.key() == Qt.Key_N:
             self.calc_exe()
         
-        if e.key() == Qt.Key.Key_Q:
+        if e.key() == Qt.Key_Q:
             self.close_Event()
 
-        if e.key() == Qt.Key.Key_M:
+        if e.key() == Qt.Key_M:
             None
 
     def calc_exe(self):
