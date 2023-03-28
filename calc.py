@@ -7,7 +7,6 @@ from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QMainWindow, QApplication, QLabel
 
 from constructGUI import construct
-from make_database import Multiplication
 
 min_q = 11
 max_q = 99
