@@ -21,7 +21,10 @@ class Window(QMainWindow):
         self.playing = False
         
     def initUI(self):
+        
         self.setWindowTitle("multiplication")
+        self.setFixedWidth(300)
+        self.setFixedHeight(150)
 
         self.num_label = construct(QLabel(), "settings.yaml", "label_1")
 
