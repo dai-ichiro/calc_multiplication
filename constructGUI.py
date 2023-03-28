@@ -1,6 +1,6 @@
-from PyQt6.QtCore import Qt, QSize
-from PyQt6.QtGui import QFont
-from PyQt6.QtWidgets import QFrame, QSlider
+from PySide6.QtCore import Qt, QSize
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import QFrame, QSlider
 
 import yaml
 
