@@ -1,6 +1,4 @@
-import sys
 import random
-
 import win32com.client
 
 from PySide6.QtCore import Qt
