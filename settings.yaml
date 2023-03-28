@@ -6,4 +6,4 @@ label_1:
   fontFamily: times
   fontPoint: 20
   fontBold: True
-  text: start
+  text: "n: next\nm: save\nq: exit"
