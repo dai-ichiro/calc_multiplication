@@ -19,6 +19,7 @@ class Window(QMainWindow):
         self.q2 = 0
         self.answer = 0
         self.playing = False
+        self.question_text = None
         
     def initUI(self):
         
@@ -39,18 +40,20 @@ class Window(QMainWindow):
             self.close_Event()
 
         if e.key() == Qt.Key_M:
-            None
+            if self.question_text is not None:
+                with open('retry.txt', mode='a') as f:
+                    f.write(f'{self.question_text}\n')
 
     def calc_exe(self):
         if self.playing == False:
             self.q1 = random.randint(min_q,max_q)
             self.q2 = random.randint(min_q,max_q)
-            self.num_label.setText('%d x %d'%(self.q1, self.q2))
+            self.question_text = f'{self.q1} x {self.q2}'
             self.answer = self.q1 * self.q2
-            self.speaker.Speak('%dかける%d'%(self.q1, self.q2))
+            self.speaker.Speak(f'{self.q1}かける{self.q2}')
             self.playing = not self.playing
         else:
-            self.speaker.Speak('%d'%self.answer)
+            self.speaker.Speak(f'{self.answer}')
             self.playing = not self.playing
     
     def close_Event(self):
