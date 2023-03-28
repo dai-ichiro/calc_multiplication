@@ -3,19 +3,14 @@ import random
 
 import win32com.client
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QMainWindow, QApplication, QLabel
-
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QMainWindow, QApplication, QLabel
 
 from constructGUI import construct
 from make_database import Multiplication
 
 min_q = 11
-max_q = 39
-
-engine = create_engine('sqlite:///try_again.db')
+max_q = 99
 
 class Window(QMainWindow):
 
@@ -27,10 +22,9 @@ class Window(QMainWindow):
         self.q2 = 0
         self.answer = 0
         self.playing = False
-        self.session = sessionmaker(bind = engine)()
         
     def initUI(self):
-        self.setWindowTitle("かけ算")
+        self.setWindowTitle("multiplication")
 
         self.num_label = construct(QLabel(), "settings.yaml", "label_1")
 
@@ -45,10 +39,7 @@ class Window(QMainWindow):
             self.close_Event()
 
         if e.key() == Qt.Key.Key_M:
-            self.session.add(
-                Multiplication(q1 = self.q1, q2 = self.q2)
-            )
-            self.session.commit()
+            None
 
     def calc_exe(self):
         if self.playing == False:
@@ -63,8 +54,7 @@ class Window(QMainWindow):
             self.playing = not self.playing
     
     def close_Event(self):
-        self.session.close()
-        sys.exit()
+        self.close()
 
 if __name__ == "__main__":
     app = QApplication([])
