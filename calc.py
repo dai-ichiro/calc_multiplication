@@ -22,7 +22,6 @@ class Window(QMainWindow):
         self.question_text = None
         
     def initUI(self):
-        
         self.setWindowTitle("multiplication")
         self.setFixedWidth(300)
         self.setFixedHeight(150)

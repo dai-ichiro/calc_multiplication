@@ -1,21 +1,18 @@
-import sys
 import random
-
 import win32com.client
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QMainWindow, QApplication, QLabel
-
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QMainWindow, QApplication, QLabel
 
 from constructGUI import construct
-from make_database import Multiplication
 
-engine = create_engine('sqlite:///try_again.db')
-session = sessionmaker(bind = engine)()
-question_list = [(x.q1, x.q2) for x in session.query(Multiplication)]
-session.close()
+#question_list
+import os
+assert os.path.exists('retry.txt'), 'file not exits'
+
+with open('retry.txt', 'r') as f:
+    question_list = f.readlines()
+    question_list = [x.strip() for x in question_list if x.strip() != '']
 
 class Window(QMainWindow):
 
@@ -29,7 +26,9 @@ class Window(QMainWindow):
         self.playing = False
         
     def initUI(self):
-        self.setWindowTitle("かけ算")
+        self.setWindowTitle("multiplication")
+        self.setFixedWidth(300)
+        self.setFixedHeight(150)
 
         self.num_label = construct(QLabel(), "settings.yaml", "label_1")
 
@@ -45,17 +44,19 @@ class Window(QMainWindow):
 
     def calc_exe(self):
         if self.playing == False:
-            self.q1, self.q2 = random.choice(question_list)
-            self.num_label.setText('%d x %d'%(self.q1, self.q2))
+            question_line = random.choice(question_list)
+            question_line_split = question_line.split(' ')
+            self.q1 = int(question_line_split[0])
+            self.q2 = int(question_line_split[2])
             self.answer = self.q1 * self.q2
-            self.speaker.Speak('%dかける%d'%(self.q1, self.q2))
+            self.speaker.Speak(f'{self.q1}かける{self.q2}')
             self.playing = not self.playing
         else:
             self.speaker.Speak('%d'%self.answer)
             self.playing = not self.playing
     
     def close_Event(self):
-        sys.exit()
+        self.close()
 
 if __name__ == "__main__":
     app = QApplication([])
