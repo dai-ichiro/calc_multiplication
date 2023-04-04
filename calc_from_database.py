@@ -1,5 +1,6 @@
 import random
 import win32com.client
+from copy import deepcopy
 
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QMainWindow, QApplication, QLabel
@@ -11,8 +12,8 @@ import os
 assert os.path.exists('retry.txt'), 'file not exits'
 
 with open('retry.txt', 'r') as f:
-    question_list = f.readlines()
-    question_list = [x.strip() for x in question_list if x.strip() != '']
+    retry_list = f.readlines()
+    retry_list = [x.strip() for x in retry_list if x.strip() != '']
 
 class Window(QMainWindow):
 
@@ -23,6 +24,7 @@ class Window(QMainWindow):
         self.q1 = 0
         self.q2 = 0
         self.answer = 0
+        self.question_list = []
         self.playing = False
         
     def initUI(self):
@@ -44,7 +46,10 @@ class Window(QMainWindow):
 
     def calc_exe(self):
         if self.playing == False:
-            question_line = random.choice(question_list)
+            if len(self.question_list) == 0:
+                self.question_list = deepcopy(retry_list)
+                random.shuffle(self.question_list)
+            question_line = self.question_list.pop(0)
             question_line_split = question_line.split(' ')
             self.q1 = int(question_line_split[0])
             self.q2 = int(question_line_split[2])
