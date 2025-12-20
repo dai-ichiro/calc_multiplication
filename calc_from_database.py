@@ -5,7 +5,7 @@ from copy import deepcopy
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QMainWindow, QApplication, QLabel
 
-from constructGUI import construct
+from utils import construct
 
 #question_list
 import os
@@ -32,7 +32,7 @@ class Window(QMainWindow):
         self.setFixedWidth(300)
         self.setFixedHeight(150)
 
-        self.num_label = construct(QLabel(), "settings.yaml", "label_for_retry")
+        self.num_label = construct(QLabel(), "utils/settings.yaml", "label_for_retry")
 
         self.setCentralWidget(self.num_label)
 
@@ -68,3 +68,4 @@ if __name__ == "__main__":
     ex =Window()
     ex.show()
     app.exec()
+
