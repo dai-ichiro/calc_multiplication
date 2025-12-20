@@ -21,6 +21,18 @@
 
 ## インストール方法
 
+### uv を使用する場合
+
+`uv` を利用して環境構築を行う場合は、以下のコマンドを実行してください。
+
+```bash
+git clone https://github.com/dai-ichiro/calc_multiplication
+cd calc_multiplication
+uv sync
+```
+
+### pip を使用する場合
+
 1. このリポジトリをクローンまたはダウンロードします。
 2. 必要なライブラリをインストールします。
 
@@ -34,6 +46,12 @@ pip install pyside6 pywin32 pyyaml
 
 以下のコマンドを実行してアプリケーションを起動します。
 
+**uvを使用する場合:**
+```bash
+uv run calc.py
+```
+
+**pipでインストールした場合:**
 ```bash
 python calc.py
 ```
@@ -55,6 +73,10 @@ python calc.py
 ※ このモードを実行するには、ディレクトリ内に `retry.txt` が存在する必要があります。
 
 ```bash
+# uvの場合
+uv run calc_from_database.py
+
+# pipの場合
 python calc_from_database.py
 ```
 
@@ -68,6 +90,10 @@ python calc_from_database.py
 保存した問題リスト（`retry.txt`）を削除したい場合は、以下のコマンドを実行します。
 
 ```bash
+# uvの場合
+uv run remove_database.py
+
+# pipの場合
 python remove_database.py
 ```
 
