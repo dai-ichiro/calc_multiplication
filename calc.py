@@ -26,7 +26,7 @@ class Window(QMainWindow):
         self.setFixedWidth(300)
         self.setFixedHeight(150)
 
-        self.num_label = construct(QLabel(), "settings.yaml", "label_for_try")
+        self.num_label = construct(QLabel(), "utils/settings.yaml", "label_for_try")
 
         self.setCentralWidget(self.num_label)
 
